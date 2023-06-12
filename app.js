@@ -9,8 +9,8 @@ const xss = require("xss-clean");
 const bodyParser = require("body-parser");
 const chalk = require("chalk");
 
-// Project Dependencies
-const { mongoConnection } = require("./mongo");
+// Swagger Documentation
+const swaggerDocs = require("./DOCS/Swagger");
 
 // ENV Variables
 require("dotenv").config();
@@ -21,19 +21,18 @@ const app = express();
 // Initialize Swagger
 // Define your basic auth options
 const authOptions = {
-    users: {
-      admin: "admin@123",
-    },
-    challenge: true,
-    realm: "Shiftlyzer",
-  };
-  app.use(
-    "/api-docs",
-    basicAuth(authOptions),
-    swaggerUi.serve,
-    swaggerUi.setup(swaggerDocs)
-  );
-  
+  users: {
+    admin: "admin@123",
+  },
+  challenge: true,
+  realm: "Bosta",
+};
+app.use(
+  "/api-docs",
+  basicAuth(authOptions),
+  swaggerUi.serve,
+  swaggerUi.setup(swaggerDocs)
+);
 
 // Middlewares
 app.use(cors());
@@ -60,9 +59,6 @@ app.use(hpp());
 
 // Prevent XSS attacks
 app.use(xss());
-
-// MongoDB Connection
-mongoConnection();
 
 // Expose User Images
 app.use(express.static(__dirname + "/public"));
