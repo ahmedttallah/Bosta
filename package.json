@@ -1,0 +1,34 @@
+{
+  "name": "bosta",
+  "version": "1.0.0",
+  "description": "Bosta BE Task",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ahmedttallah/bosta.git"
+  },
+  "keywords": [
+    "Node.js",
+    "RESTful-APIs",
+    "MYSQL",
+    "Sequelize",
+    "Express"
+  ],
+  "author": "Ahmed Attallah",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ahmedttallah/bosta/issues"
+  },
+  "homepage": "https://github.com/ahmedttallah/bosta#readme",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^4.18.2",
+    "morgan": "^1.10.0",
+    "sequelize": "^6.32.0",
+    "sequelize-cli": "^6.6.1",
+    "swagger-ui-express": "^4.6.3"
+  }
+}
