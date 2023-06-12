@@ -1,10 +1,8 @@
 // User model
 const { DataTypes } = require("sequelize");
-const bcrypt = require("bcrypt");
 
-const User = sequelize.define(
-  "User",
-  {
+module.exports = (sequelize) => {
+  const User = sequelize.define("User", {
     id: {
       type: DataTypes.INTEGER,
       primaryKey: true,
@@ -38,24 +36,11 @@ const User = sequelize.define(
       allowNull: false,
       defaultValue: false,
     },
-  },
-  {
-    hooks: {
-      // Encrypt Password
-      afterValidate: (user) => {
-        if (user.dataValues.password) {
-          user.dataValues.password = bcrypt.hashSync(
-            user.dataValues.password,
-            10
-          );
-        }
-      },
-    },
-  }
-);
+  });
 
-User.associate = (models) => {
-  User.hasMany(models.URLCheck);
+  User.associate = (models) => {
+    User.hasMany(models.URLCheck);
+  };
+
+  return User;
 };
-
-module.exports = User;

@@ -1,13 +1,13 @@
 // Packages
 const express = require("express");
 const basicAuth = require("express-basic-auth");
+const swaggerUi = require("swagger-ui-express");
 const helmet = require("helmet");
 const logger = require("morgan");
 const cors = require("cors");
 const hpp = require("hpp");
 const xss = require("xss-clean");
 const bodyParser = require("body-parser");
-const chalk = require("chalk");
 
 // Swagger Documentation
 const swaggerDocs = require("./DOCS/Swagger");
@@ -70,5 +70,7 @@ app.use("/api/v1", require("./routes"));
 const PORT = process.env.PORT;
 app.listen(
   PORT,
-  console.log(chalk.bgGreen.bold(`[OK] Listening on http://localhost:${PORT} `))
+  console.log(`[OK] Listening on http://localhost:${PORT} `)
 );
+
+module.exports = app;

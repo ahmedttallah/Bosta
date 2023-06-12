@@ -1,0 +1,257 @@
+{
+    "tables": {
+        "Reports": {
+            "tableName": "Reports",
+            "schema": {
+                "id": {
+                    "primaryKey": true,
+                    "autoIncrement": true,
+                    "field": "id",
+                    "seqType": "Sequelize.INTEGER"
+                },
+                "status": {
+                    "allowNull": false,
+                    "field": "status",
+                    "seqType": "Sequelize.STRING"
+                },
+                "availability": {
+                    "allowNull": false,
+                    "field": "availability",
+                    "seqType": "Sequelize.FLOAT"
+                },
+                "outages": {
+                    "allowNull": false,
+                    "field": "outages",
+                    "seqType": "Sequelize.INTEGER"
+                },
+                "downtime": {
+                    "allowNull": false,
+                    "field": "downtime",
+                    "seqType": "Sequelize.INTEGER"
+                },
+                "uptime": {
+                    "allowNull": false,
+                    "field": "uptime",
+                    "seqType": "Sequelize.INTEGER"
+                },
+                "responseTime": {
+                    "allowNull": false,
+                    "field": "responseTime",
+                    "seqType": "Sequelize.INTEGER"
+                },
+                "history": {
+                    "allowNull": false,
+                    "field": "history",
+                    "seqType": "Sequelize.JSON"
+                },
+                "createdAt": {
+                    "allowNull": false,
+                    "field": "createdAt",
+                    "seqType": "Sequelize.DATE"
+                },
+                "updatedAt": {
+                    "allowNull": false,
+                    "field": "updatedAt",
+                    "seqType": "Sequelize.DATE"
+                },
+                "URLCheckId": {
+                    "allowNull": true,
+                    "references": {
+                        "model": "URLChecks",
+                        "key": "id"
+                    },
+                    "onDelete": "SET NULL",
+                    "onUpdate": "CASCADE",
+                    "field": "URLCheckId",
+                    "seqType": "Sequelize.INTEGER"
+                }
+            },
+            "indexes": []
+        },
+        "Tags": {
+            "tableName": "Tags",
+            "schema": {
+                "id": {
+                    "primaryKey": true,
+                    "autoIncrement": true,
+                    "field": "id",
+                    "seqType": "Sequelize.INTEGER"
+                },
+                "name": {
+                    "allowNull": false,
+                    "field": "name",
+                    "seqType": "Sequelize.STRING"
+                },
+                "createdAt": {
+                    "allowNull": false,
+                    "field": "createdAt",
+                    "seqType": "Sequelize.DATE"
+                },
+                "updatedAt": {
+                    "allowNull": false,
+                    "field": "updatedAt",
+                    "seqType": "Sequelize.DATE"
+                }
+            },
+            "indexes": []
+        },
+        "URLChecks": {
+            "tableName": "URLChecks",
+            "schema": {
+                "id": {
+                    "primaryKey": true,
+                    "autoIncrement": true,
+                    "field": "id",
+                    "seqType": "Sequelize.INTEGER"
+                },
+                "name": {
+                    "allowNull": false,
+                    "field": "name",
+                    "seqType": "Sequelize.STRING"
+                },
+                "url": {
+                    "allowNull": false,
+                    "field": "url",
+                    "seqType": "Sequelize.STRING"
+                },
+                "protocol": {
+                    "allowNull": false,
+                    "field": "protocol",
+                    "seqType": "Sequelize.STRING"
+                },
+                "path": {
+                    "allowNull": true,
+                    "field": "path",
+                    "seqType": "Sequelize.STRING"
+                },
+                "port": {
+                    "allowNull": true,
+                    "field": "port",
+                    "seqType": "Sequelize.INTEGER"
+                },
+                "webhook": {
+                    "allowNull": true,
+                    "field": "webhook",
+                    "seqType": "Sequelize.STRING"
+                },
+                "timeout": {
+                    "allowNull": true,
+                    "defaultValue": {
+                        "value": 5
+                    },
+                    "field": "timeout",
+                    "seqType": "Sequelize.INTEGER"
+                },
+                "interval": {
+                    "allowNull": true,
+                    "defaultValue": {
+                        "value": 600
+                    },
+                    "field": "interval",
+                    "seqType": "Sequelize.INTEGER"
+                },
+                "threshold": {
+                    "allowNull": true,
+                    "defaultValue": {
+                        "value": 1
+                    },
+                    "field": "threshold",
+                    "seqType": "Sequelize.INTEGER"
+                },
+                "authenticationUsername": {
+                    "allowNull": true,
+                    "field": "authenticationUsername",
+                    "seqType": "Sequelize.STRING"
+                },
+                "authenticationPassword": {
+                    "allowNull": true,
+                    "field": "authenticationPassword",
+                    "seqType": "Sequelize.STRING"
+                },
+                "ignoreSSL": {
+                    "allowNull": true,
+                    "defaultValue": {
+                        "value": false
+                    },
+                    "field": "ignoreSSL",
+                    "seqType": "Sequelize.BOOLEAN"
+                },
+                "createdAt": {
+                    "allowNull": false,
+                    "field": "createdAt",
+                    "seqType": "Sequelize.DATE"
+                },
+                "updatedAt": {
+                    "allowNull": false,
+                    "field": "updatedAt",
+                    "seqType": "Sequelize.DATE"
+                },
+                "UserId": {
+                    "allowNull": true,
+                    "references": {
+                        "model": "Users",
+                        "key": "id"
+                    },
+                    "onDelete": "SET NULL",
+                    "onUpdate": "CASCADE",
+                    "field": "UserId",
+                    "seqType": "Sequelize.INTEGER"
+                }
+            },
+            "indexes": []
+        },
+        "Users": {
+            "tableName": "Users",
+            "schema": {
+                "id": {
+                    "primaryKey": true,
+                    "autoIncrement": true,
+                    "field": "id",
+                    "seqType": "Sequelize.INTEGER"
+                },
+                "username": {
+                    "allowNull": false,
+                    "unique": true,
+                    "field": "username",
+                    "seqType": "Sequelize.STRING"
+                },
+                "email": {
+                    "allowNull": false,
+                    "unique": true,
+                    "field": "email",
+                    "seqType": "Sequelize.STRING"
+                },
+                "password": {
+                    "allowNull": false,
+                    "field": "password",
+                    "seqType": "Sequelize.STRING"
+                },
+                "verificationToken": {
+                    "allowNull": true,
+                    "field": "verificationToken",
+                    "seqType": "Sequelize.STRING"
+                },
+                "isVerified": {
+                    "allowNull": false,
+                    "defaultValue": {
+                        "value": false
+                    },
+                    "field": "isVerified",
+                    "seqType": "Sequelize.BOOLEAN"
+                },
+                "createdAt": {
+                    "allowNull": false,
+                    "field": "createdAt",
+                    "seqType": "Sequelize.DATE"
+                },
+                "updatedAt": {
+                    "allowNull": false,
+                    "field": "updatedAt",
+                    "seqType": "Sequelize.DATE"
+                }
+            },
+            "indexes": []
+        }
+    },
+    "revision": 1
+}
