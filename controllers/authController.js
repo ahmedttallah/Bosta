@@ -8,10 +8,7 @@ const { User } = require("../models");
 // Helper function to send verification email
 async function sendVerificationEmail(user) {
   const transporter = nodemailer.createTransport({
-    host: "smtp.gmail.com",
-    port: 587,
-    secure: false,
-    requireTLS: true,
+    service: 'gmail',
     auth: {
       user: process.env.EMAIL_USERNAME,
       pass: process.env.EMAIL_PASSWORD,

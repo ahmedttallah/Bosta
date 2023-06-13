@@ -200,6 +200,52 @@
             },
             "indexes": []
         },
+        "URLCheckTags": {
+            "tableName": "URLCheckTags",
+            "schema": {
+                "id": {
+                    "primaryKey": true,
+                    "autoIncrement": true,
+                    "field": "id",
+                    "seqType": "Sequelize.INTEGER"
+                },
+                "URLCheckId": {
+                    "allowNull": false,
+                    "field": "URLCheckId",
+                    "unique": "URLCheckTags_URLCheckId_TagId_unique",
+                    "references": {
+                        "model": "URLChecks",
+                        "key": "id"
+                    },
+                    "onDelete": "CASCADE",
+                    "onUpdate": "CASCADE",
+                    "seqType": "Sequelize.INTEGER"
+                },
+                "TagId": {
+                    "allowNull": false,
+                    "field": "TagId",
+                    "unique": "URLCheckTags_URLCheckId_TagId_unique",
+                    "references": {
+                        "model": "Tags",
+                        "key": "id"
+                    },
+                    "onDelete": "CASCADE",
+                    "onUpdate": "CASCADE",
+                    "seqType": "Sequelize.INTEGER"
+                },
+                "createdAt": {
+                    "allowNull": false,
+                    "field": "createdAt",
+                    "seqType": "Sequelize.DATE"
+                },
+                "updatedAt": {
+                    "allowNull": false,
+                    "field": "updatedAt",
+                    "seqType": "Sequelize.DATE"
+                }
+            },
+            "indexes": []
+        },
         "Users": {
             "tableName": "Users",
             "schema": {

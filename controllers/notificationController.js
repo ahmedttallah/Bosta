@@ -1,24 +1,28 @@
 // Package
-const sgMail = require("@sendgrid/mail");
-sgMail.setApiKey(process.env.SENDGRID_API_KEY);
+const nodemailer = require("nodemailer");
 
-// Function to send email notification
 const sendEmailNotification = async (toEmail, subject, message) => {
   try {
-    const msg = {
-      to: toEmail,
+    const transporter = nodemailer.createTransport({
+      service: "gmail",
+      auth: {
+        user: process.env.EMAIL_USERNAME,
+        pass: process.env.EMAIL_PASSWORD,
+      },
+    });
+
+    const mailOptions = {
       from: process.env.EMAIL_USERNAME,
+      to: toEmail,
       subject: subject,
-      text: message,
-      html: "<strong>Ahmed Attallah</strong>",
+      html: message,
     };
 
-    // Send the email
-    await sgMail.send(msg);
-
-    console.log("Email notification sent successfully");
+    await transporter.sendMail(mailOptions);
+    console.log("Email sent successfully.");
   } catch (error) {
-    console.error("Failed to send email notification:", error);
+    console.error("Error sending email:", error);
+    throw new Error("Failed to send email.");
   }
 };
 

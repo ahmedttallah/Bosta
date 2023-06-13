@@ -1,5 +1,6 @@
 // Apis
 const authRoutesDocs = require("./auth.docs");
+const urlCheckRoutesDocs = require("./url-check.docs");
 
 const swaggerDoc = {
   openapi: "3.0.0",
@@ -25,6 +26,7 @@ const swaggerDoc = {
   security: [{ bearerAuth: [] }],
   paths: {
     ...authRoutesDocs,
+    ...urlCheckRoutesDocs,
   },
 };
 

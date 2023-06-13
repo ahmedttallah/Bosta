@@ -19,8 +19,9 @@ const createURLCheck = async (req, res) => {
       authenticationUsername,
       authenticationPassword,
       ignoreSSL,
+      tags,
     } = req.body;
-    const userId = req.userId; // Get the user ID from the authenticated user
+    const userId = req.userId;
 
     // Create the URL check
     const urlCheck = await URLCheck.create({
@@ -36,16 +37,25 @@ const createURLCheck = async (req, res) => {
       authenticationUsername,
       authenticationPassword,
       ignoreSSL,
-      UserId: userId, // Associate the URL check with the authenticated user
+      UserId: userId,
     });
+
+    // Add tags to the URL check
+    if (tags && Array.isArray(tags) && tags.length > 0) {
+      const tagInstances = await Tag.bulkCreate(
+        tags.map((tagName) => ({ name: tagName })),
+        { ignoreDuplicates: true }
+      );
+      await urlCheck.addTags(tagInstances);
+    }
 
     res.status(201).json({ success: true, data: urlCheck });
   } catch (error) {
-    res
-      .status(400)
-      .json({ success: false, message: "Failed to create URL check" });
+    console.log("Error creating URL check:", error);
+    res.status(400).json({ success: false, message: "Failed to create URL check" });
   }
 };
+
 
 // Get all URL checks for the authenticated user
 const getAllURLChecks = async (req, res) => {
